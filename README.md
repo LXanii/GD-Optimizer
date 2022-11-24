@@ -13,3 +13,7 @@ Windows 11,
 Windows 10
 
 This list will be updated with more operating systems that are confirmed to work. 
+
+# Important
+
+Relaunch the program everytime you join a new call on discord.
