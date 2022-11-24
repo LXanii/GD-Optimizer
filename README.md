@@ -5,6 +5,8 @@ As more optimizes are found, they will be added so make sure to keep up to date,
 
 OPEN THIS PROGRAM ONLY AFTER OPENING GD AND DISCORD.
 
+"main.py" is the source code for the executable. "GD_Optimizer.exe" should work for everyone without the requirement of Python.
+
 # Working Operating Systems
 
 Windows 11,
