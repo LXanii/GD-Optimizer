@@ -19,3 +19,7 @@ This list will be updated with more operating systems that are confirmed to work
 This is mainly used for people to help test the new versions.
 
 # Changelog
+
+- Discord Priority Loops Now
+- Closes if GD isn't open
+- Added more program optimizations
