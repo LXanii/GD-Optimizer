@@ -16,7 +16,8 @@ This list will be updated with more operating systems that are confirmed to work
 
 # This is the Dev build.
 
-This is mainly used for people to help test the new versions.
+This is used for public testing of new versions. 
+If you find any issues contact me anywhere ASAP.
 
 # Changelog
 
