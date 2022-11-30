@@ -9,8 +9,8 @@ OPEN THIS PROGRAM ONLY AFTER OPENING GD.
 
 # Working Operating Systems
 
-Windows 11,
-Windows 10
+- Windows 11
+- Windows 10
 
 This list will be updated with more operating systems that are confirmed to work. 
 
