@@ -4,43 +4,24 @@ import wmi
 
 # For 2.0.0, make into a dll with more optimizations
 
-pcount = 0
-
-processes = wmi.WMI ()
-"""
-for process in processes.Win32_Process(name="discord.exe"):
-    print(process.ProcessId, process.Name)
-    pcount += 1
-
-if pcount == 0:
-    print("No optimizable process found. [discord.exe]")
-else:
-    print("Processes found. [discord.exe]", "(" + str(pcount) + ")")
-
-for process in processes.Win32_Process(name="firefox.exe"):
-    print(process.ProcessId, process.Name)
-    pcount += 1
-
-if pcount == 0:
-    print("No optimizable process found. [firefox.exe]")
-else:
-    print(str(pcount) + " Processes found. [firefox.exe]")
-"""
-# finds processes ^^^
-
 red = "\033[1;31;40m"
 white = "\033[1;37;40m"
 first = True
+close = False
+pcount = 0
 big_ver = "2"
 mini_ver = ".0.0"
-version = white + " (" + big_ver + mini_ver + ")"
-title = white + "GD Optimizer Version"
+version = " (" + big_ver + mini_ver + ")"
+title = "GD Optimizer Version"
+processes = wmi.WMI()
 
 # sets these processes to their respective priorities
 low = ["Discord.exe", "steamwebhelper.exe", "firefox.exe", "chrome.exe"]
 normal = []
 high = []
 real = ["GeometryDash.exe"]
+
+#####################################
 
 def lowpriority():
     for i in low:
@@ -70,7 +51,7 @@ def realpriority(): # sets to high for some reason lmfao
         os.system(process_change)
         os.system('cls')
 
-def process():
+def priority_change():
     time.sleep(1)
     realpriority()
     #highpriority() these 2 do nothing as of now
@@ -78,18 +59,52 @@ def process():
     lowpriority()
     return(white + "\nAll processes set correctly.")
 
-# work here on finding processes vvvv
+# functions above ^^^^^^^
+
+print(title + version, "\n")
+
+for i in low:
+    for process in processes.Win32_Process(name=i):
+        pcount += 1
+    if pcount == 0:
+        print("No optimizable process found. " + "[" + i + "]")
+        low.remove(i)
+    else:
+        print(str(pcount) + " Processes found. " + "[" + i + "]")
+    pcount = 0
+
+for i in real:
+    for process in processes.Win32_Process(name=i):
+        pcount += 1
+    if pcount == 0:
+        print("No optimizable processes found. " + "[" + i + "]")
+        if i == "GeometryDash.exe":
+            close = True
+            real.remove(i)
+        else:
+            real.remove(i)
+    else:
+        print(str(pcount) + " Processes found. " + "[" + i + "]")
+    pcount = 0
+
+print("\nOptimizing...")
+time.sleep(2)
 
 while True:
-    if first == True:
-        print(title + version, red + "\n\nWarning: You will need to relaunch \nthis everytime you open GD.\n", process() + "\n")
-        first = False
-        time.sleep(1)
+    if close == False:
+        if first == True:
+            print(white + title + white + version, red + "\n\nWarning: You will need to relaunch \nthis everytime you open GD.\n", priority_change() + "\n")
+            first = False
+            time.sleep(1)
+        else:
+            print(white + title + white + version, red + "\n\nWarning: You will need to relaunch \nthis everytime you open GD.\n")
+        print(white + "Looping Discord Priority... \n\n" + red + "Do not exit the program.")
+        time.sleep(5)
+        i = "Discord.exe"
+        process_change = 'wmic process where name="' + i + '" CALL setpriority "64"'
+        os.system(process_change)
+        os.system('cls')
     else:
-        print(title + version, red + "\n\nWarning: You will need to relaunch \nthis everytime you open GD.\n")
-    print(white + "Looping Discord Priority... \n\n" + red + "Do not exit the program.")
-    time.sleep(5)
-    i = "Discord.exe"
-    process_change = 'wmic process where name="' + i + '" CALL setpriority "64"'
-    os.system(process_change)
-    os.system('cls')
+        print(red + "\nGeometryDash.exe was not found. \n\nClosing Program...")
+        time.sleep(3)
+        break
