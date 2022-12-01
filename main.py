@@ -85,11 +85,10 @@ time.sleep(2)
 while True:
     if close == False:
         if first == True:
-            print(Fore.WHITE + title + Fore.WHITE + version, Fore.RED + "\n\nWarning: You will need to relaunch \nthis everytime you open GD.\n", priority_change() + "\n")
             first = False
             time.sleep(1)
         else:
-            print(Fore.WHITE + title + Fore.WHITE + version, Fore.RED + "\n\nWarning: You will need to relaunch \nthis everytime you open GD.\n")
+            print(Fore.WHITE + title + Fore.WHITE + version, "\n")
         print(Fore.WHITE + "Looping Discord Priority... \n\n" + Fore.RED + "Do not close this window.")
         time.sleep(5)
         i = "Discord.exe"
