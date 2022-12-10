@@ -1,9 +1,5 @@
+import os, time, wmi
 from colorama import Fore, init
-import os
-import time
-import wmi
-
-# For 2.0.0, make into a dll with more optimizations
 
 init() # used cuz colors just didnt work before and google said this fixed it
 
@@ -49,8 +45,7 @@ def priority_change():
     highpriority()
     #normalpriority() this is used for nothing rn
     lowpriority()
-    return(Fore.WHITE + "\nAll processes set correctly.")
-
+    
 # functions above ^^^^^^^
 
 print(title + version, "\n")
@@ -69,34 +64,38 @@ for i in high:
     for process in processes.Win32_Process(name=i):
         pcount += 1
     if pcount == 0:
-        print(Fore.RED + "No optimizable process found. " + "[" + i + "]")
+        print(Fore.RED + "No optimizable process found. " + "[" + i + "]\n")
         if i == "GeometryDash.exe":
             close = True
-            high.remove(i)
-        else:
-            high.remove(i)
+        high.remove(i)
     else:
-        print(Fore.GREEN + str(pcount) + " Processes found. " + "[" + i + "]")
+        print(Fore.GREEN + str(pcount) + " Processes found. " + "[" + i + "]\n")
     pcount = 0
 
-print("\n" + Fore.WHITE + "Optimizing...\n")
-time.sleep(2)
+priority_change()
 
 while True:
     if close == False:
-        if first == True:
+        if first:
             first = False
             time.sleep(1)
         else:
             print(Fore.WHITE + title + Fore.WHITE + version, "\n")
-        print(Fore.WHITE + "Looping Discord Priority... \n\n" + Fore.RED + "Do not close this window.")
-        time.sleep(5)
-        i = "Discord.exe"
-        process_change = 'wmic process where name="' + i + '" CALL setpriority "64"'
-        os.system(process_change)
-        os.system('cls')
+        for process in processes.Win32_Process(name="GeometryDash.exe"):
+            pcount += 1
+            if pcount == 1:
+                print(Fore.GREEN + "GeometryDash.exe Found.") 
+                time.sleep(1)       
+                print(Fore.WHITE + "Looping Discord Priority. \n\n" + Fore.RED + "Do not close this window.")
+                time.sleep(5)
+                i = "Discord.exe"
+                process_change = 'wmic process where name="' + i + '" CALL setpriority "64"'
+                os.system(process_change)
+                os.system('cls')
+                pcount = 0
+            else:           
+                close = True
     else:
-        error = "GeometryDash.exe was not found." + "\n\n" + Fore.RED + "Closing Program..."
-        print(Fore.YELLOW + str(error))
+        print(Fore.RED + "GeometryDash.exe Not Found.")
         time.sleep(3)
         break
