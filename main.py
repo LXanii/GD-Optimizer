@@ -22,7 +22,7 @@ Priority Level Value	Priority Level Name
 """
 
 # sets these processes to their respective priorities
-low = ["Discord.exe", "steamwebhelper.exe", "firefox.exe", "chrome.exe"]
+low = ["Discord.exe", "DiscordPTB.exe", "steamwebhelper.exe", "firefox.exe", "chrome.exe"]
 normal = []
 high = []
 real = ["GeometryDash.exe"]
