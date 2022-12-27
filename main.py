@@ -25,7 +25,7 @@ Priority Level Value	Priority Level Name
 low = ["Discord.exe", "DiscordPTB.exe", "steamwebhelper.exe", "firefox.exe", "chrome.exe"]
 normal = []
 high = []
-real = ["GeometryDash.exe"]
+real = ["GeometryDash.exe", "WORSTGDPS.exe"]
 
 def lowpriority():
     for i in low:
